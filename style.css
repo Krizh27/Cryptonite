@@ -14,9 +14,10 @@ body {
 #alertBox {
   position: fixed;
   top: 20px;        /* 🔥 change from 200px */
-  right: 10px;
-  left: 10px;       /* optional: full width feel */
+  right: 10px;      
   z-index: 9999;
+  justify-content: center;
+  text-align: center;
 }
 
 .alert {
@@ -375,7 +376,7 @@ tr:hover {
   justify-content: center;
   align-items: center;
 
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #aaa;
 }
 .ft a {

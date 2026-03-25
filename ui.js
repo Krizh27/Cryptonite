@@ -186,9 +186,17 @@ async function renderCoinInfo(coin) {
 //     })
 // }
 
+const menuBtn = document.getElementById("menuBtn");
+const dropdown = document.getElementById("dropdownMenu");
+
+menuBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  dropdown?.classList.toggle("hidden");
+});
+
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".menu-container")) {
-    dropdown.classList.add("hidden");
+    dropdown?.classList.add("hidden");
   }
 });
 
