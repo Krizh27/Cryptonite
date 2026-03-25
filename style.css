@@ -1,0 +1,558 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0c0c0c;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+
+#alertBox {
+  position: fixed;
+  top: 20px;        /* 🔥 change from 200px */
+  right: 10px;
+  left: 10px;       /* optional: full width feel */
+  z-index: 9999;
+}
+
+.alert {
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease;
+}
+
+.alert.success { background: #2ecc71; }
+.alert.error { background: #e74c3c; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+header {
+  padding: 14px 12px;
+  border-bottom: 1px solid #333;
+  display: flex;
+ 
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.nav{
+    display: flex;
+    gap: 10px;
+}
+
+
+.nav a{
+    color: #eee;
+    font-size: 1.3rem;
+}
+
+a{
+  text-underline-offset: 4px; 
+}
+
+.nav img{
+    height: 40px;
+    width: 40px;
+    margin-top: -5px;
+    margin-right: -38px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+
+input[type="file"] {
+  display: none;
+}
+#disclaimer{
+    text-align: center;
+}
+/* input[type="file"], button {
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #1b1b1b;
+  color: #eee;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+} */
+
+.file-btn,button {
+  background: #1b1b1b;
+  border: 1px solid #555;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #eee;
+}
+
+.file-btn:hover, button:hover {
+  background: #2a2a2a;
+}
+
+#fileName {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+/* #exportbtn:hover {
+  background: #2a2a2a;
+  cursor: pointer;
+} */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 16px 10px 20px;
+  width: min(2140px, 99vw);
+  margin: 0 auto;
+}
+
+.coin-info,
+.market-list,
+.trade-panel,
+.news-section {
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #141414;
+  padding: 14px;
+
+}
+#searchInput {
+  margin-left: 10px;
+  width: 100%;
+  max-width: 300px;
+
+  padding: 8px 12px;
+  border-radius: 20px;
+
+  border: 1px solid #444;
+  background: #111;
+  color: #eee;
+
+  font-size: 0.9rem;
+  outline: none;
+
+  transition: all 0.2s ease;
+}
+.searchbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.searchbox button{
+  border-radius: 20px;
+  height: 35px;
+}
+
+.navsearch{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 10px;
+}
+
+.navsearch input{
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #444;
+  background: #111;
+  color: #eee;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.navsearch input:focus {
+  border-color: #00ff88;
+  box-shadow: 0 0 6px rgba(0, 255, 136, 0.3);
+}
+
+.bodysearch{
+  display: none;
+}
+/* Placeholder */
+#searchInput::placeholder {
+  color: #888;
+}
+
+/* Focus effect */
+#searchInput:focus {
+  border-color: #00ff88;
+  box-shadow: 0 0 6px rgba(0, 255, 136, 0.3);
+}
+
+/* Hover */
+#searchInput:hover {
+  background: #181818;
+}
+.market-list{
+  max-height: 600px;
+}
+
+.trade-panel{
+  max-height: 600px;
+  overflow-x: hidden;
+}
+
+#marketListHeader {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #0d0d0d;
+}
+
+#marketListBody {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.market-row {
+    display: grid;
+    grid-template-columns: 60px 150px 100px 100px 100px 140px;
+    padding: 8px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+
+.header-row {
+    font-weight: bold;
+    cursor: default;
+}
+
+.market-row:hover {
+    background: #1a1a1a;
+}
+#coinInfoContainer {
+    padding: 10px;
+    line-height: 1.6;
+}
+#coinInfoContainer a{
+  color: #eee;
+  text-decoration: none;
+}
+#coinInfoContainer a:hover{
+  text-decoration: underline;
+}
+
+img {
+    border-radius: 50%;
+}
+.news-item {
+    padding: 8px;
+    border-bottom: 1px solid #333;
+}
+
+.news-item a {
+    color: #4da6ff;
+    font-size: 12px;
+}
+.trade-panel input {
+  width: 100%;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #111;
+  color: #fff;
+  padding: 8px 10px;
+}
+
+.trade-panel button {
+  margin-right: 8px;
+  margin-top: 6px;
+  width: 4rem;
+}
+#buybtn{
+    background: #00ff88;
+    color: #000000;
+}
+#sellbtn{
+    background: #ff4d4d;
+    color: #000000;
+}
+
+#balance {
+  margin: 10px 0 0;
+  font-weight: 700;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.92rem;
+}
+
+thead th {
+  text-align: left;
+  color: #dcdcdc;
+  border-bottom: 1px solid #333;
+  padding-bottom: 6px;
+  font-size: 0.82rem;
+}
+
+td {
+  border-bottom: 1px solid #1d1d1d;
+  padding: 8px 4px;
+}
+
+tr:hover {
+  background: #222;
+}
+
+.profit { color: #00ff88; }
+.loss { color: #ff4d4d; }
+
+.coin-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+ /* .news-section {
+  margin: 0 10px;
+  height: 300px;
+  overflow-y: auto;
+} */
+
+@media (min-width: 900px) {
+  .dashboard {
+    grid-template-columns: 1fr 2fr 1.1fr;
+    gap: 18px;
+    padding: 16px;
+  }
+}
+
+  #fileName {
+    display: none;
+  }
+
+.trade-panel::-webkit-scrollbar{
+  display: none;
+}
+
+#marketListBody::-webkit-scrollbar{
+  display: none;
+}
+
+  /* .news-section {
+    margin: 16px;
+    height: 210px;
+  }
+}  */
+/* #chartFrame{
+  color: white;
+} */
+ #chartFallback{
+  text-align: center;
+ }
+.ft {
+  border-top: 1px solid #333;
+  padding: 12px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.2rem;
+  color: #aaa;
+}
+.ft a {
+  color: #00ff88;
+  text-decoration: none;
+}
+
+.ft a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .navsearch{
+    display: none;
+  }
+  .bodysearch{
+    display: block;
+  }
+  .market-list {
+    order: 4;
+  }
+
+  .trade-panel {
+    order: 3;
+  }
+
+  .coin-info {
+    order: 1;
+  }
+
+  .market-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 80px;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+}
+@media (max-width: 480px) {
+  .impexp {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .impexp button {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .market-row span:nth-child(4),
+  .market-row span:nth-child(5),
+  .market-row span:nth-child(6) {
+    display: none;
+  }
+  
+}
+@media (max-width: 768px) {
+  #marketListHeader .header-row b:nth-child(4),
+  #marketListHeader .header-row b:nth-child(5),
+  #marketListHeader .header-row b:nth-child(6) {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  #chartFrame {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    gap: 10px;
+
+    /* background-color: #00ff88; */
+  }
+  .nav img{
+    height: 40px;
+    width: 40px;
+    margin-top: -5px;
+    margin-right: -38px;
+  }
+  }
+  .impexp {
+    width: 11.5rem;
+  }
+
+  #coinInfoContainer a{
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 0.75rem;
+  }
+
+  td, th {
+    padding: 4px;
+  }
+}
+
+.market-row {
+  transition: 0.2s ease;
+}
+
+.market-row:active {
+  transform: scale(0.98);
+}
+  .chart-box {
+  grid-column: 1 / -1;
+}
+@media (max-width: 768px) {
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chart-box { order: 2; }
+  .coin-info { order: 4; }
+  .trade-panel { order: 3; }
+  .market-list { order: 1; }
+}
+
+/* Hamburger button */
+#menuBtn {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  color: #eee;
+  cursor: pointer;
+}
+
+/* Dropdown */
+.menu-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-container a{
+  color: #eee;
+  font-size: large;
+  margin-right: 20px;
+}
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+
+  background: #141414;
+  border: 1px solid #333;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 10px;
+  min-width: 120px;
+  z-index: 999;
+}
+
+.dropdown button,
+.dropdown .file-btn {
+  width: 100%;
+  text-align: left;
+}
+
+/* Hidden state */
+.hidden {
+  display: none;
+}
+@media (max-width: 768px) {
+  .impexp {
+    display: none;
+  }
+}

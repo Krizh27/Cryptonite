@@ -1,0 +1,73 @@
+{
+  "balance": 819.1147238499987,
+  "portfolio": {
+    "solana": {
+      "amount": 2.5,
+      "avgprice": 87.066
+    },
+    "bitcoin": {
+      "amount": 0.1,
+      "avgprice": 69489.55
+    },
+    "tron": {
+      "amount": 15,
+      "avgprice": 0.30839999999999995
+    },
+    "cardano": {
+      "amount": 5,
+      "avgprice": 0.2585
+    },
+    "aave": {
+      "amount": 5,
+      "avgprice": 107.79
+    },
+    "tether": {
+      "amount": 5,
+      "avgprice": 0.999824
+    },
+    "figure-heloc": {
+      "amount": 5,
+      "avgprice": 1
+    },
+    "rain": {
+      "amount": 5,
+      "avgprice": 0.007507230000000001
+    },
+    "bittensor": {
+      "amount": 5,
+      "avgprice": 271
+    },
+    "falcon-finance": {
+      "amount": 5,
+      "avgprice": 0.997784
+    },
+    "aster-2": {
+      "amount": 5,
+      "avgprice": 0.67
+    },
+    "near": {
+      "amount": 5,
+      "avgprice": 1.295
+    },
+    "okb": {
+      "amount": 1,
+      "avgprice": 84.92
+    }
+  },
+  "trades": [
+    {
+      "type": "buy",
+      "coin": "tron",
+      "amount": 5,
+      "price": 0.3082,
+      "timestamp": "1,774,246,984,943"
+    },
+    {
+      "type": "sell",
+      "coin": "cardano",
+      "amount": 5,
+      "price": 0.2507,
+      "timestamp": "1,774,246,988,295"
+    }
+  ]
+}

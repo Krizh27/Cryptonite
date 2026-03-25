@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptonite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>    
+<header>
+    <div class="nav">
+        <img src="emerald-svgrepo-com.svg" alt="Cryptonite Logo">
+        <h1>Cryptonite</h1>
+        
+        
+    </div>
+    <!-- <div class="impexp">
+
+        <label for="importfile" class="file-btn">Choose File</label>
+<input type="file" id="importfile">
+<span id="fileName">No file chosen</span>
+
+        <button id="exportbtn" onclick="exportPortfolio()">Export Portfolio</button>
+    </div> -->
+    <div class="menu-container">
+        <a target="_blank" href="news.html">News</a>
+  <button id="menuBtn">☰</button>
+
+  <div id="dropdownMenu" class="dropdown hidden">
+    <label class="file-btn">
+      Import
+      <input type="file" id="importfile">
+    </label>
+
+    <button onclick="exportPortfolio()">Export</button>
+    <!-- <button onclick="toggleHistory()">History</button> -->
+  </div>
+</div>
+</header>
+<main>
+<div id="alertBox"></div>
+<div class="searchbox">
+<input id="searchInput" placeholder="Search coin (bitcoin)" />
+<button onclick="searchCoin()">Search</button>
+</div>
+
+<div class="dashboard">
+
+    <div class="coin-info">
+        <div id="coinInfoContainer">
+    <h2>Click on a coin for more info</h2>
+
+    
+</div>
+    </div>
+
+    <div class="market-list">
+        <div id="marketListHeader"></div>
+<div id="marketListBody"></div> 
+    </div>
+
+    <div class="trade-panel">
+<div class="portfolio-summary">
+    <h3>Total Portfolio Value: <span id="totalValue">$0.00</span></h3>
+    <h4>PnL: <span id="totalPnL">$0.00</span></h4>
+</div>
+<h2>Trade</h2>
+
+<input id="coinInput" placeholder="coin id (bitcoin)">
+<input id="amountInput" min="0" step="any" type="number" placeholder="amount">
+
+<button id="buybtn" onclick="buyCoin()">Buy</button>
+<button id="sellbtn" onclick="sellCoin()">Sell</button>
+
+<h3 id="balance">Balance:</h3>
+
+<table id="portfolioTable">
+<thead>
+<tr>
+<th>Coin</th>
+<th>Amount</th>
+<th>Price</th>
+<th>Value</th>
+<th>PnL</th>
+</tr>
+</thead>
+<tbody id="inventory"></tbody>
+</table>
+
+</div>
+<br>
+<div id="disclaimer">
+  <i>
+    Note: Some charts may not load for all coins due to data availability.
+  </i>
+</div>
+<div class="chart-box">
+    <div id="chartFallback"></div>
+  <iframe 
+    id="chartFrame"
+    width="100%"
+    height="500"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
+</div>
+
+</div>
+
+</main>
+
+<br>
+
+<footer>
+  <div class="ft">
+    <pre>© 2026 <a href="">Cryptonite</a> • Built by <a href="https://github.com/yourusername" target="_blank">Krish</a></pre>
+  </div>
+</footer>
+<script src="ui.js"></script>
+<script src="test.js"></script>
+
+</body>
+</html>
