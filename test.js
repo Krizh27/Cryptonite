@@ -167,7 +167,7 @@ async function fetchMarket(){
 
 // async function fetchNews() {
 //     try {
-//         const res = await fetch("https://cryptopanic.com/api/v1/posts/?auth_token=490b9c13b4237aa8d916959b2b8fc31fddc619d8&public=true")
+//         const res = await fetch("https://cryptopanic.com/api/v1/posts/?auth_token=********************8&public=true")
 //         const data = await res.json()
 
 //         return data.results
@@ -317,8 +317,8 @@ async function handleCoinSearch(coinId) {
             return cache.data;
         }
 
-        // ❗ FINAL FAIL CASE
-        showMarketError();   // 👈 add this
+        //  FINAL FAIL CASE
+        showMarketError();   
         return {};
     }
 }
