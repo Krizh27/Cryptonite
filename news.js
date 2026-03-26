@@ -1,6 +1,6 @@
 async function fetchNews() {
     try {
-        const res = await fetch ("https://newsapi.org/v2/everything?q=crypto&sortBy=publishedAt&apiKey=edea3752487d472ab4c54c0e7c9c2905")
+        const res = await fetch ("https://newsapi.org/v2/everything?q=crypto&sortBy=publishedAt&apiKey=YOUR_API_KEY")
         
         console.log(res) // Response {type: 'cors', url: 'https://newsapi.org/v2/everything?q=crypto&sortBy=…blishedAt&apiKey=edea3752487d472ab4c54c0e7c9c2905', redirected: false, status: 200, ok: true, …}
         // console.log(res.json()) //Promise {<pending>}
