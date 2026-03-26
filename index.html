@@ -34,11 +34,13 @@
 
     <button onclick="exportPortfolio()">Export</button>
     <!-- <button onclick="toggleHistory()">History</button> -->
+     <button onclick="resetApp()">Reset</button>
   </div>
 </div>
 </header>
 <main>
 <div id="alertBox"></div>
+
 <div class="searchbox">
 <input id="searchInput" placeholder="Search coin (bitcoin)" />
 <button onclick="searchCoin()">Search</button>
@@ -73,6 +75,10 @@
 <button id="sellbtn" onclick="sellCoin()">Sell</button>
 
 <h3 id="balance">Balance:</h3>
+<div id="capitalInputBox">
+  <input type="number" min="0" id="capital" placeholder="Enter capital (max 1000000)" />
+  <button onclick="saveCapital()">Save</button>
+</div>
 
 <table id="portfolioTable">
 <thead>
@@ -116,8 +122,12 @@
     <pre>© 2026 <a href="https://github.com/Krizh27/Cryptonite.git" target="_blank">Cryptonite</a> • Built by <a href="https://www.linkedin.com/in/krish-mahyavanshi-1651421b5/" target="_blank">Krish</a></pre>
   </div>
 </footer>
+</body>
 <script src="ui.js"></script>
 <script src="test.js"></script>
-
-</body>
+<script>
+  if (localStorage.getItem("capital")) {
+    document.documentElement.classList.add("has-capital");
+  }
+</script>
 </html>

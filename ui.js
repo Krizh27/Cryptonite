@@ -1,5 +1,12 @@
 console.log("UI LOADED")
+// window.onload = () => {
+//   if (state.balance > 0) {
+//     document.getElementById("capitalInputBox").style.display = "none";
 
+//     document.getElementById("capitalDisplay").innerText =
+//       `Capital: $${state.balance}`;
+//   }
+// };
 
 function renderPortfolio(){
 
@@ -92,6 +99,25 @@ function renderMarketList() {
         bodyContainer.appendChild(row)
     }
 }
+
+function showMarketError() {
+    const headerContainer = document.getElementById("marketListHeader");
+    const bodyContainer = document.getElementById("marketListBody");
+
+    headerContainer.innerHTML = "";
+    bodyContainer.innerHTML = `
+        <div style="
+            padding: 20px;
+            text-align: center;
+            color: red;
+            font-weight: bold;
+        ">
+            Server busy, try again in a minute or after sometime
+        </div>
+    `;
+}
+
+
 async function renderCoinInfo(coin) {
   const container = document.getElementById("coinInfoContainer");
 
@@ -258,6 +284,37 @@ else pnlEl.style.color = "red";
     // pnlEl.style.color = summary.pnl >= 0 ? "lime" : "red";
 }
 
+function resetApp() {
+  if (confirm("This will delete all your data. Continue?")) {
+    localStorage.clear();
+    location.reload();
+  }
+}
+// window.saveCapital = function () {
+//   const input = document.getElementById("capital");
+
+//   if (!input) return;
+
+//   const value = Number(input.value);
+
+//   if (!value || value <= 0) {
+//     showAlert("Enter valid capital", "error");
+//     return;
+//   }
+
+//   localStorage.setItem("capital", value);
+//   state.balance = value;
+//   initialBalance = value;
+
+//   // 👇 Hide input
+//   document.getElementById("capitalInputBox").style.display = "none";
+
+//   // 👇 Show capital
+//   document.getElementById("capitalDisplay").innerText =
+//     `Capital: $${value}`;
+
+//   showAlert("Capital set successfully", "success");
+// };
 
 
 

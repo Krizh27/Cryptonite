@@ -22,20 +22,52 @@ async function getCoins(){
 
 let appReady = false
 // getCoins();
+
+
+function getCapital() {
+  const value = localStorage.getItem("capital");
+  return value ? Number(value) : 0;
+}
+
+let initialBalance = getCapital();
+
 const state = {
-    balance: 10000,
+    balance: initialBalance,
     portfolio: {},
     market: {},
     trades: [],
     lastMarketUpdate: 0
 };
+if (state.balance === 0) {
+  showAlert("Set your capital to start trading", "error");
+}
 
+window.saveCapital = function () {
+  const input = document.getElementById("capital");
+  const value = Number(input.value);
+
+  if (!value || value <= 0) {
+    showAlert("Enter valid capital", "error");
+    return;
+  }
+
+  if (value > 1000000) {
+    showAlert("Capital too large", "error");
+    return;
+  }
+
+  localStorage.setItem("capital", value);
+  state.balance = value;
+  initialBalance = value;
+
+  document.getElementById("capitalInputBox").style.display = "none";
+};
 // function cleanNumber(num, decimals = 8){
 //     if(Math.abs(num) < 1e-8) return 0
 //     return Number(num.toFixed(decimals))
 // }
 
-let capital;
+
 
 // async function loadPortfolio() {
 //     try {
@@ -70,7 +102,8 @@ function loadPortfolio() {
 function savePortfolio(params) {
     const data ={
         balance:state.balance,
-        portfolio:state.portfolio
+        portfolio:state.portfolio,
+        trades: state.trades 
     }
 
     // await fs.writeFile("./portfolio.json",JSON.stringify(data,null,2))  
@@ -265,13 +298,29 @@ async function handleCoinSearch(coinId) {
     }
     console.log("fetching new market data...");
 
-    const data = await fetchMarket()
+      try {
+        const data = await fetchMarket();
 
-    writeCache(data)
+        if (Object.keys(data).length > 0) {
+            writeCache(data);
+            return data;
+        }
 
-    return data
-    
- }
+        throw new Error("Empty API data");
+
+    } catch (err) {
+        console.log("API + cache failed");
+
+        if (cache) {
+            state.market = cache.data;
+            return cache.data;
+        }
+
+        // ❗ FINAL FAIL CASE
+        showMarketError();   // 👈 add this
+        return {};
+    }
+}
 
 
 
@@ -330,6 +379,9 @@ async function buy(coin, amount){
 
     console.log("----------------------------------------------------")
     showAlert(`Bought ${amount} ${coin} at $${price}`,"success")
+    // inside sell()
+document.getElementById("coinInput").value = ""
+document.getElementById("amountInput").value = ""
 }
 
 async function sell(coin, amount){
@@ -369,6 +421,9 @@ async function sell(coin, amount){
  savePortfolio();
 console.log("----------------------------------------------------")
     showAlert(`Sold ${amount} ${coin} at $${price}`,"success")
+    // inside sell()
+document.getElementById("coinInput").value = ""
+document.getElementById("amountInput").value = ""
 }
 
 function portfolio(){
@@ -430,8 +485,11 @@ if (!price) {
 
     const totalValue = state.balance + totalCoinValue;
     const pnl = totalValue - initialBalance;
+    let pnlPercent = 0;
 
-    const pnlPercent = (pnl / initialBalance) * 100;
+if (initialBalance > 0) {
+  pnlPercent = (pnl / initialBalance) * 100;
+}
 
     return {
         totalValue,
@@ -442,11 +500,17 @@ if (!price) {
 
 
 function exportPortfolio(){
+
+    const formattedTrades = state.trades.map(t => ({
+        ...t,
+        time: new Date(t.timestamp).toLocaleString("en-IN")
+    }));
+
     const data = {
-        balance:state.balance,
-        portfolio:state.portfolio,
-        trades: state.trades
-    }
+        balance: state.balance,
+        portfolio: state.portfolio,
+        trades: formattedTrades
+    };
     const json = JSON.stringify(data,null,2)
     const blob = new Blob([json],{type:'application/json'})
 const url = URL.createObjectURL(blob)
@@ -483,6 +547,7 @@ async function importPortfolio(event){
 
         state.balance = data.balance
         state.portfolio = data.portfolio
+        state.trades = data.trades || []
 
         localStorage.setItem("portfolio", JSON.stringify(data))
         refreshImportedCoins();
@@ -574,13 +639,15 @@ function startPriceStream(){
 
 
 // run();
-const initialBalance = 10000;
+
 async function run(){
 
     console.log("Initializing app...")
 
     loadPortfolio()
-
+    if (state.balance === 0) {
+        showAlert("Set your capital to start trading", "error");
+    }
     await updateMarket()
     renderMarketList()
     
