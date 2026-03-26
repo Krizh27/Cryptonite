@@ -9,10 +9,7 @@ body {
   font-family: Arial, sans-serif;
   min-height: 100vh;
 }
-.has-capital{
 
-
-}
 
 .has-capital #capitalInputBox {
   display: none;

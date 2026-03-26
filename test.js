@@ -103,7 +103,8 @@ function savePortfolio(params) {
     const data ={
         balance:state.balance,
         portfolio:state.portfolio,
-        trades: state.trades 
+        trades: state.trades,
+        capital: initialBalance 
     }
 
     // await fs.writeFile("./portfolio.json",JSON.stringify(data,null,2))  
@@ -509,7 +510,8 @@ function exportPortfolio(){
     const data = {
         balance: state.balance,
         portfolio: state.portfolio,
-        trades: formattedTrades
+        trades: formattedTrades,
+        capital: initialBalance
     };
     const json = JSON.stringify(data,null,2)
     const blob = new Blob([json],{type:'application/json'})
@@ -538,7 +540,7 @@ document.getElementById("importfile")
 async function importPortfolio(event){
     
     const file = event.target.files[0]
-
+    if (!file) return;
     const reader = new FileReader()
 
     reader.onload = function(e){
@@ -549,9 +551,18 @@ async function importPortfolio(event){
         state.portfolio = data.portfolio
         state.trades = data.trades || []
 
+initialBalance = data.capital || data.balance  // ⭐ fallback safety
+
+localStorage.setItem("capital", initialBalance)
+document.getElementById("capitalInputBox").style.display = "none";
         localStorage.setItem("portfolio", JSON.stringify(data))
         refreshImportedCoins();
+
+        renderPortfolio()
+        updatePortfolioUI(state)
+        event.target.value = ""
         showAlert("Portfolio restored","success")
+        
     }
 
     reader.readAsText(file)
